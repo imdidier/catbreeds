@@ -22,6 +22,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'CatBreeds',
       debugShowCheckedModeBanner: false,
       navigatorKey: ScreenSize.navigationKey,
       theme: AppTheme().getTheme(),
