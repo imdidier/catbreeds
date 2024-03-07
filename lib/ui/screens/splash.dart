@@ -3,9 +3,9 @@ import 'package:catbreeds/config/services/navigation_service.dart';
 import 'package:catbreeds/ui/providers/cat_provider.dart';
 import 'package:catbreeds/ui/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
+import '../../config/helpers/code_utils.dart';
 import '../../config/helpers/screen_size.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -46,10 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               alignment: Alignment.center,
               height: ScreenSize.absoluteHeight * 0.4,
-              child: Lottie.asset(
-                'assets/lotties/splash.json',
-                frameRate: FrameRate.max,
-              ),
+              child: CodeUtils.showLottie('assets/lotties/splash.json'),
             ),
           ],
         ),

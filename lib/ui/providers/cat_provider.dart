@@ -1,5 +1,5 @@
 import 'package:catbreeds/data/datasources/cat_datasource.dart';
-import 'package:catbreeds/data/repositories_impl/cat_reporitory_impl.dart';
+import 'package:catbreeds/data/repositories_impl/cat_repository_impl.dart';
 import 'package:catbreeds/domain/use_cases/cat_use_case.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

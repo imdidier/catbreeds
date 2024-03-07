@@ -1,10 +1,10 @@
+import 'package:catbreeds/config/helpers/code_utils.dart';
 import 'package:catbreeds/config/helpers/screen_size.dart';
 import 'package:catbreeds/config/services/navigation_service.dart';
 import 'package:catbreeds/data/models/cat_model.dart';
 import 'package:catbreeds/ui/providers/cat_provider.dart';
 import 'package:catbreeds/ui/screens/details.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/image_cat.dart';
@@ -50,21 +50,12 @@ class HomeScreen extends StatelessWidget {
     return Container(
       height: ScreenSize.absoluteHeight * 0.05,
       width: ScreenSize.width - ScreenSize.width * 0.08,
-      margin: EdgeInsets.symmetric(
-        horizontal: ScreenSize.width * 0.02,
-      ),
+      margin: EdgeInsets.symmetric(horizontal: ScreenSize.width * 0.02),
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black45,
-            spreadRadius: 0,
-            blurRadius: 2,
-            offset: Offset(0, 3),
-          )
-        ],
+        boxShadow: [CodeUtils.showBoxShadow()],
       ),
       child: TextFormField(
         controller: catProvider.breedController,
@@ -105,9 +96,8 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   height: ScreenSize.absoluteHeight * 0.4,
-                  child: Lottie.asset(
+                  child: CodeUtils.showLottie(
                     'assets/lotties/breed_not_found.json',
-                    frameRate: FrameRate.max,
                   ),
                 ),
                 Text(
@@ -124,7 +114,7 @@ class HomeScreen extends StatelessWidget {
 
   Container buildItemCat(CatModel cat, CatProvider catProvider) {
     return Container(
-      height: ScreenSize.absoluteHeight * 0.4,
+      // height: ScreenSize.absoluteHeight * 0.4,
       margin: EdgeInsets.only(bottom: ScreenSize.width * 0.03),
       padding: EdgeInsets.symmetric(
         vertical: ScreenSize.width * 0.02,
@@ -133,14 +123,7 @@ class HomeScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black45,
-            spreadRadius: 0,
-            blurRadius: 2,
-            offset: Offset(0, 3),
-          )
-        ],
+        boxShadow: [CodeUtils.showBoxShadow()],
       ),
       child: Column(
         children: [
@@ -150,6 +133,7 @@ class HomeScreen extends StatelessWidget {
             height: ScreenSize.absoluteHeight * 0.31,
             key: Key(cat.referenceImageId),
           ),
+          SizedBox(height: ScreenSize.width * 0.01),
           buildOriginAndIntelligence(cat)
         ],
       ),

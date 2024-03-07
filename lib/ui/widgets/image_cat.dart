@@ -1,7 +1,7 @@
 import 'package:fast_cached_network_image/fast_cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
+import '../../config/helpers/code_utils.dart';
 import '../../config/helpers/screen_size.dart';
 
 class ImageCatWidget extends StatelessWidget {
@@ -13,6 +13,10 @@ class ImageCatWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return buildBody();
+  }
+
+  Container buildBody() {
     return Container(
       height: height,
       width: ScreenSize.width,
@@ -25,27 +29,29 @@ class ImageCatWidget extends StatelessWidget {
           url: imageUrl,
           fit: BoxFit.fill,
           errorBuilder: (context, error, stackTrace) {
-            return Container(
-              alignment: Alignment.center,
-              height: height,
-              child: Lottie.asset(
-                'assets/lotties/image_not_found.json',
-                frameRate: FrameRate.max,
-              ),
-            ); // Widget a mostrar en caso de error
+            return buildImageNotFound(); // Widget a mostrar en caso de error
           },
           loadingBuilder: (_, __) {
-            return Container(
-              alignment: Alignment.center,
-              height: height,
-              child: Lottie.asset(
-                'assets/lotties/loading.json',
-                frameRate: FrameRate.max,
-              ),
-            );
+            return buildImageLoading();
           },
         ),
       ),
+    );
+  }
+
+  Container buildImageLoading() {
+    return Container(
+      alignment: Alignment.center,
+      height: height,
+      child: CodeUtils.showLottie('assets/lotties/loading.json'),
+    );
+  }
+
+  Container buildImageNotFound() {
+    return Container(
+      alignment: Alignment.center,
+      height: height,
+      child: CodeUtils.showLottie('assets/lotties/image_not_found.json'),
     );
   }
 }

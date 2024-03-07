@@ -61,44 +61,11 @@ class DetailsScreen extends StatelessWidget {
           children: List.generate(
             catProvider.detailsToShow.length,
             (index) {
-              String nameInfo = catProvider.detailsToShow[index];
-              String info = '';
-              switch (catProvider.detailsToShow[index]) {
-                case 'Description':
-                  info = cat.description;
-                  break;
-                case 'Origin':
-                  info = cat.origin;
-                  break;
-                case 'Intelligence':
-                  info = cat.intelligence.toString();
-                  break;
-                case 'Energy level':
-                  info = cat.energyLevel.toString();
-                  break;
-                case 'Temperament':
-                  info = cat.temperament;
-                  break;
-                case 'Adaptability':
-                  info = cat.adaptability.toString();
-                  break;
-                case 'Life span':
-                  info = cat.lifeSpan;
-                  break;
-                case 'Alt names':
-                  info = cat.altNames;
-                  break;
-                case 'Dog friendly':
-                  info = cat.dogFriendly.toString();
-                  break;
-                case 'Child friendly':
-                  info = cat.childFriendly.toString();
-                  break;
-                case 'Affection level':
-                  info = cat.affectionLevel.toString();
-                  break;
-                default:
-              }
+              String nameInfo =
+                  catProvider.detailsToShow[index] == 'Description'
+                      ? ''
+                      : catProvider.detailsToShow[index];
+              String info = getInfo(catProvider.detailsToShow[index]);
               if (info.isEmpty) return const SizedBox();
               return Padding(
                 padding: EdgeInsets.symmetric(
@@ -116,6 +83,34 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
+  String getInfo(String info) {
+    switch (info) {
+      case 'Description':
+        return info = cat.description;
+      case 'Origin':
+        return info = cat.origin;
+      case 'Intelligence':
+        return info = cat.intelligence.toString();
+      case 'Energy level':
+        return info = cat.energyLevel.toString();
+      case 'Temperament':
+        return info = cat.temperament;
+      case 'Adaptability':
+        return info = cat.adaptability.toString();
+      case 'Life span':
+        return info = cat.lifeSpan;
+      case 'Alt names':
+        return info = cat.altNames;
+      case 'Dog friendly':
+        return info = cat.dogFriendly.toString();
+      case 'Child friendly':
+        return info = cat.childFriendly.toString();
+      case 'Affection level':
+        return info = cat.affectionLevel.toString();
+    }
+    return '';
+  }
+
   Text buildNameBreed() {
     return Text(
       cat.name,
@@ -130,7 +125,7 @@ class DetailsScreen extends StatelessWidget {
   RichText buildInfo({required String nameInfo, required String info}) {
     return RichText(
       text: TextSpan(
-        text: '$nameInfo: ',
+        text: nameInfo.isEmpty ? '' : '$nameInfo: ',
         style: TextStyle(
           fontSize: ScreenSize.width * 0.04,
           fontWeight: FontWeight.bold,
